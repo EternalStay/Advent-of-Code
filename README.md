@@ -27,8 +27,8 @@ Ce repository est composé des éléments suivants :
 - Un dossier pour chaque année de l'Advent of Code (`/2023` pour l'année 2023), avec à l'intérieur les jours de l'évènement (`/1` pour le jour 1), et avec à l'intérieur les fichiers servant à la résolution des problèmes : 
 
    - `input.txt` : Le fichier source du problème.
-   - `part1.php` : La solution de la première partie.
-   - `part1.php` : La solution de la deuxième partie.
+   - `1.php` : La solution de la première partie.
+   - `2.php` : La solution de la deuxième partie.
 
 ## Avertissement
 
