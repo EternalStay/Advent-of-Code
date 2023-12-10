@@ -32,4 +32,8 @@ Ce repository est composé des éléments suivants :
 
 ## Avertissement
 
-Ces solutions sont fournies à des fins éducatives et de partage. Essayez d'abord de résoudre les problèmes par vous-même avant de consulter ces solutions :) !
+Ces solutions sont fournies à des fins éducatives et de partage. Essayez d'abord de résoudre les problèmes par vous-même avant de les consulter :) !
+
+## Mon avancée
+
+Pour le moment, je tente de réaliser l'Advent of Code de 2023. J'ai néanmoins beaucoup de mal à optimiser mes algorithmes afin de les faire fonctionner sur un grand nombre de données (cf. _Jour 5 - Partie 2_ que je n'ai pas encore réussi ou le _Jour 8 - Partie 2_).
