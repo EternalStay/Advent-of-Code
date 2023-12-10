@@ -2,23 +2,33 @@
 $file = file_get_contents('input.txt');
 $lines = explode("\n", $file);
 
-$priorities = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+$priorities = ['J', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'Q', 'K', 'A'];
 
 $cards = [];
 
 foreach ($lines as $line) {
     $card = explode(' ', $line);
+    $joker = 0;
 
     $parts = [];
     foreach (count_chars($card[0], 1) as $str => $value) {
-        $parts[] = $value;
+        $parts[chr($str)] = $value;
+    }
+    arsort($parts);
+
+    if (isset($parts['J'])) {
+        $joker = $parts['J'];
+        unset($parts['J']);
+        if (count($parts)) {
+            $parts[array_keys($parts)[0]] += $joker;
+        }
     }
 
     $cards[] = [
         'hand' => $card[0], 
         'value' => $card[1], 
         'parts' => $parts, 
-        'typePriority' => typeOfHand($parts), 
+        'typePriority' => typeOfHand($parts ? str_replace('J', $parts[array_keys($parts)[0]], $parts) : []), 
         'handPriority' => priorityOfHand($card[0]), 
     ];
 }
@@ -42,10 +52,10 @@ echo $sum;
 
 function typeOfHand($parts): int
 {
-    if (count($parts) === 1) return 1; // Five of a kind
-    elseif (count($parts) === 2 && in_array($parts[0], [1, 4])) return 2; // Four of a kind
+    if (count($parts) <= 1) return 1; // Five of a kind
+    elseif (count($parts) === 2 && in_array($parts[array_keys($parts)[0]], [1, 4])) return 2; // Four of a kind
     elseif (count($parts) === 2) return 3; // Full house
-    elseif (count($parts) === 3 && ($parts[0] === 3 || $parts[1] === 3 || $parts[2] === 3)) return 4; // Three of a kind
+    elseif (count($parts) === 3 && ($parts[array_keys($parts)[0]] == 3 || $parts[array_keys($parts)[1]] == 3 || $parts[array_keys($parts)[2]] == 3)) return 4; // Three of a kind
     elseif (count($parts) === 3) return 5; // Two pair
     elseif (count($parts) === 4) return 6; // One pair
     else return 7;
