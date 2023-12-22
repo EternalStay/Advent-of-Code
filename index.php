@@ -17,6 +17,7 @@ foreach ($annees as $annee) {
     echo '<h1>Année '.basename($annee).'</h1>';
 
     $jours = array_filter(glob($annee . '/*'), 'is_dir');
+    natsort($jours);
     echo '<ul>';
     foreach ($jours as $jour) {
         echo '<li>';
